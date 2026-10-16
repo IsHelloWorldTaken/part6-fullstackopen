@@ -4,11 +4,15 @@ const Statistics = () => {
   
   const { good, neutral, bad } = useVotes()
   const all = good + neutral + bad
-  const average = (good - bad) / all
-  const positive = (good * 100 / all) + '%'
 
-  if (all === 0) return <div><p>No feedback given</p></div>
-  
+  const average = all === 0
+    ? 0
+    : (good - bad) / all
+
+  const positive = all === 0
+    ? 0 + ' %'
+    : (good * 100 / all) + ' %'
+
   return (
     <div>
       <h2>statistics</h2>
