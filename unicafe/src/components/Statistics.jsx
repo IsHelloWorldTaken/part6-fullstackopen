@@ -1,10 +1,13 @@
+import { useVotes } from '../store'
+
 const Statistics = () => {
-  const good = 0
-  const neutral = 0
-  const bad = 0
-  const all = 0
-  const average = 0
-  const positive = 0
+  
+  const { good, neutral, bad } = useVotes()
+  const all = good + neutral + bad
+  const average = (good - bad) / all
+  const positive = (good * 100 / all) + '%'
+
+  if (all === 0) return <div><p>No feedback given</p></div>
   
   return (
     <div>
