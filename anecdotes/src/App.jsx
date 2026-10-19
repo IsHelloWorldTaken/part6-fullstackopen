@@ -1,11 +1,15 @@
-import { useAnecdotes } from "./store"
+import { useAnecdotes, useVote } from "./store"
+
+
+// 1 Implement first the ability to vote for anecdotes. The number of votes must be stored in the Zustand store.
+// 2 Add the ability to add new anecdotes to the application. (You can keep the addition form uncontrolled as in the earlier example.)
+// 3 Separate the creation of a new anecdote into its own component called AnecdoteForm and separate the display of the anecdote list into its own component called AnecdoteList.
+// 4 Ensure that the anecdotes are kept in descending order by number of votes. (Array.toSorted())
 
 const App = () => {
   const anecdotes = useAnecdotes()
 
-  const vote = (id) => {
-    console.log("vote", id)
-  }
+  const vote = useVote()
 
   return (
     <div>
