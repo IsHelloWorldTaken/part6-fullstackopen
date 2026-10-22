@@ -1,13 +1,13 @@
-import { useAddNew } from "../store"
+import { useActions } from "../store"
 
 const AnecdoteForm = () => {
-  const add = useAddNew()
+  const { addNew } = useActions()
 
   const handleNewAnecdote = event => {
     event.preventDefault()
 
     const anecdote = event.target.newAnecdote.value
-    add(anecdote)
+    addNew(anecdote)
 
     event.target.reset()
   }

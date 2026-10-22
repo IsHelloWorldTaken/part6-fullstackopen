@@ -1,8 +1,8 @@
-import { useAnecdotes, useVote } from "../store"
+import { useAnecdotes, useActions } from "../store"
 
 const AnecdoteList = () => {
   const anecdotes = useAnecdotes()
-  const vote = useVote()
+  const { vote } = useActions()
 
   const anecdotesSorted = anecdotes => {
     return anecdotes.toSorted((anecdoteA, anecdoteB) => (
