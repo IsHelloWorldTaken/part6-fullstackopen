@@ -1,4 +1,4 @@
-import { useActions } from "../store"
+import { useActions } from "../anecdoteStore"
 
 const Filter = () => {
   const { setFilter } = useActions()
