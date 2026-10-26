@@ -8,7 +8,7 @@ const AnecdoteForm = () => {
   const handleNewAnecdote = event => {
     event.preventDefault()
 
-    const anecdote = event.target.newAnecdote.value
+    const anecdote = event.target.anecdote.value
     addNew(anecdote)
     setNotification(`'${anecdote}' has been added`)
 
@@ -20,9 +20,9 @@ const AnecdoteForm = () => {
       <h2>Create new</h2>
       <form onSubmit={handleNewAnecdote} >
         <div>
-          <input data-testid='new' name='newAnecdote' />
+          <input data-testid='new' name='anecdote' />
         </div>
-        <button style={{ marginTop: 3 }} >Create</button>
+        <button style={{ marginTop: 3 }} >create</button>
       </form>
     </div>
   )

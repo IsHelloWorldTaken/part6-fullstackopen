@@ -12,30 +12,27 @@ const Anecdote = ({ anecdoteObject }) => {
   const handleVote = anecdote => event => {
     event.preventDefault()
     vote(anecdote.id)
-    setNotification(`You voted for '${anecdote.content}'`)
+    setNotification(`you voted '${anecdote.content}'`)
   }
 
   const handleRemove = id => event => {
     event.preventDefault()
-
-    if (window.confirm(`Remove '${anecdoteObject.content}'?`)) {
-      remove(id)
-      setNotification('Anecdote removed')
-    }
+    remove(id)
+    setNotification('Anecdote removed')
   }
 
   const removeButton = () => (
     <button style={style} onClick={handleRemove(anecdoteObject.id)}>
-      Remove
+      delete
     </button>
   )
 
   return (
     <div style={{ marginBottom: 10 }}>
-      <div><strong>{anecdoteObject.content}</strong></div>
+      <div>{anecdoteObject.content}</div>
       <div>
-        Has {anecdoteObject.votes}
-        <button style={style} onClick={handleVote(anecdoteObject)}>Vote</button>
+        has {anecdoteObject.votes}
+        <button style={style} onClick={handleVote(anecdoteObject)}>vote</button>
         {!anecdoteObject.votes && removeButton()}
       </div>
     </div>
