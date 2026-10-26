@@ -1,13 +1,16 @@
-import { useActions } from "../anecdoteStore"
+import { useAnecdoteActions } from "../anecdoteStore"
+import { useNotificationActions } from "../notificationStore"
 
 const AnecdoteForm = () => {
-  const { addNew } = useActions()
+  const { addNew } = useAnecdoteActions()
+  const { setNotification } = useNotificationActions()
 
   const handleNewAnecdote = event => {
     event.preventDefault()
 
     const anecdote = event.target.newAnecdote.value
     addNew(anecdote)
+    setNotification(`'${anecdote}' has been added`)
 
     event.target.reset()
   }
@@ -19,7 +22,7 @@ const AnecdoteForm = () => {
         <div>
           <input data-testid='new' name='newAnecdote' />
         </div>
-        <button>create</button>
+        <button style={{ marginTop: 3 }} >Create</button>
       </form>
     </div>
   )

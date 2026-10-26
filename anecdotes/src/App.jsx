@@ -3,11 +3,11 @@ import AnecdoteList from "./components/AnecdoteList"
 import Filter from "./components/Filter"
 import Notification from "./components/Notification"
 import { useEffect } from "react"
-import { useActions } from "./anecdoteStore"
+import { useAnecdoteActions } from "./anecdoteStore"
 
 const App = () => {
 
-  const { initialize } = useActions()
+  const { initialize } = useAnecdoteActions()
 
   useEffect(() => {
     initialize()

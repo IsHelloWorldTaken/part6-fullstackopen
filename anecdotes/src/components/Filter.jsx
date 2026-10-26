@@ -1,7 +1,7 @@
-import { useActions } from "../anecdoteStore"
+import { useAnecdoteActions } from "../anecdoteStore"
 
 const Filter = () => {
-  const { setFilter } = useActions()
+  const { setFilter } = useAnecdoteActions()
 
   const handleChange = (event) => {
     event.preventDefault()
