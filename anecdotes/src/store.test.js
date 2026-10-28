@@ -32,4 +32,15 @@ describe('useAnecdoteStore', () => {
     const { result: anecdotesResult } = renderHook(() => useAnecdotes())
     expect(anecdotesResult.current).toEqual(mockAnecdotes)
   })
+
+  it('store returns an array of anecdotes sorted by votes', async () => {
+    const mockAnecdotes = [
+      { content: 'Test - no votes', id: 1, votes: 0 },
+      { content: 'Test - some votes', id: 2, votes: 3 }
+    ]
+    useAnecdoteStore.setState({ anecdotes: mockAnecdotes, filter: '' })
+
+    const { result: anecdoteResult } = renderHook(() => useAnecdotes())
+    expect(anecdoteResult.current).toEqual([mockAnecdotes[1], mockAnecdotes[0]])
+  })
 })
