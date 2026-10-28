@@ -37,5 +37,6 @@ export const useAnecdotes = () => {
       .includes(filter.toLowerCase())
   )
 }
-
 export const useAnecdoteActions = () => useAnecdoteStore(state => state.actions)
+
+export default useAnecdoteStore
