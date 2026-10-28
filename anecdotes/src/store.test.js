@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { renderHook, act } from '@testing-library/react'
+import { renderHook, act, render } from '@testing-library/react'
 
 vi.mock('./services/anecdotes', () => ({
   default: {
@@ -33,14 +33,31 @@ describe('useAnecdoteStore', () => {
     expect(anecdotesResult.current).toEqual(mockAnecdotes)
   })
 
-  it('store returns an array of anecdotes sorted by votes', async () => {
-    const mockAnecdotes = [
+  it('store returns an array of anecdotes sorted by votes', () => {
+    const testAnecdotes = [
       { content: 'Test - no votes', id: 1, votes: 0 },
       { content: 'Test - some votes', id: 2, votes: 3 }
     ]
-    useAnecdoteStore.setState({ anecdotes: mockAnecdotes, filter: '' })
+
+    useAnecdoteStore.setState({ anecdotes: testAnecdotes })
 
     const { result: anecdoteResult } = renderHook(() => useAnecdotes())
-    expect(anecdoteResult.current).toEqual([mockAnecdotes[1], mockAnecdotes[0]])
+    expect(anecdoteResult.current).toEqual([testAnecdotes[1], testAnecdotes[0]])
+  })
+
+  it('when filter is applied, the store returns only the anecdotes matching the filter', async () => {
+    const testAnecdotes = [
+      { content: 'Dog walks in a park', id: 1, votes: 0 },
+      { content: 'Cat sleeps on a table', id: 2, votes: 0 }
+    ]
+    useAnecdoteStore.setState({ anecdotes: testAnecdotes })
+
+    const { result } = renderHook(() => useAnecdoteActions())
+    await act(async () => {
+      await result.current.setFilter('cat')
+    })
+
+    const { result: anecdoteResult } = renderHook(() => useAnecdotes())
+    expect(anecdoteResult.current).toEqual([testAnecdotes[1]])
   })
 })
