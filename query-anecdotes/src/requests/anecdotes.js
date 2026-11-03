@@ -1,0 +1,27 @@
+const baseUrl = 'http://localhost:3001/anecdotes'
+
+export const getAnecdotes = async () => {
+  const response = await fetch(baseUrl)
+
+  // console.log(JSON.parse(JSON.stringify(result)))
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch anecdotes')
+  }
+
+  return await response.json()
+}
+
+export const createNewAnecdote = async newAnecdote => {
+  const response = await fetch(baseUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newAnecdote)
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to create a new anecdote')
+  }
+
+  return await response.json()
+}
