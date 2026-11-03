@@ -12,7 +12,7 @@ const App = () => {
   if (isPending) {
     return <div>loading data...</div>
   } else if (isError) {
-    return <div>anecdote service is not available due to problems in server</div>
+    return <div>anecdote service not available due to problems in server</div>
   }
 
   return (
